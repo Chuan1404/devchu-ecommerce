@@ -10,7 +10,7 @@ export class CreateProductHandler {
   async execute(command: CreateProductCommand): Promise<Product> {
     const { name, price, description } = command;
     const newProduct = new Product(
-      Math.random().toString(36).substring(7), // Random ID generation for demo
+      Math.random().toString(36).substring(7),
       name,
       price,
       description,
