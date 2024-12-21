@@ -1,11 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ICommandRepository, IQueryRepository } from 'src/shared/interfaces';
+import { IRepository } from 'src/shared/interfaces';
 import { Product } from '../../domain/entities/product.entity';
 
 @Injectable()
-export class ProductRepository
-  implements IQueryRepository<Product>, ICommandRepository<Product>
-{
+export class ProductRepository implements IRepository<Product> {
   create(data: Partial<Product>): Promise<boolean> {
     throw new Error('Method not implemented.');
   }

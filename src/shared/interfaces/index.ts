@@ -9,3 +9,17 @@ export interface ICommandRepository<T> {
   update(id: string, data: Partial<T>): Promise<boolean>;
   delete(id: string, isHard: boolean): Promise<boolean>;
 }
+
+export interface IRepository<T>
+  extends IQueryRepository<T>,
+    ICommandRepository<T> {}
+
+// password
+
+export interface IHashPassword {
+  hash(rawPassword: string): string;
+}
+
+export interface IComparePassword {
+  compare(rawPassword: string, hashedPassword: string): boolean;
+}
