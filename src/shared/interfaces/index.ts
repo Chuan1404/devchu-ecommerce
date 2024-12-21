@@ -5,7 +5,7 @@ export interface IQueryRepository<T> {
 }
 
 export interface ICommandRepository<T> {
-  insert(data: Partial<T>): Promise<boolean>;
+  create(data: Partial<T>): Promise<boolean>;
   update(id: string, data: Partial<T>): Promise<boolean>;
   delete(id: string, isHard: boolean): Promise<boolean>;
 }

@@ -17,6 +17,6 @@ export class CreateProductHandler
       price,
       description,
     );
-    return this.productService.save(newProduct);
+    return this.productService.create(newProduct);
   }
 }

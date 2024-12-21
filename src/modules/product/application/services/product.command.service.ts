@@ -5,8 +5,8 @@ import { ProductRepository } from '../../infras/repository/product.repository';
 @Injectable()
 export class ProductService {
   constructor(private productRepository: ProductRepository) {}
-  save(product: Product): Product {
-    this.productRepository.save(product);
+  create(product: Product): Product {
+    this.productRepository.create(product);
     return product;
   }
 
