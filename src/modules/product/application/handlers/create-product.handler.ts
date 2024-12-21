@@ -1,11 +1,13 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Product } from '../../domain/entities/product.entity';
-import { ProductRepository } from '../../infras/repository/product.repository';
 import { CreateProductCommand } from '../commands/create-product.command';
+import { ProductService } from '../services/product.command.service';
 
 @CommandHandler(CreateProductCommand)
-export class CreateProductHandler implements ICommandHandler<CreateProductCommand>{
-  constructor(private readonly productRepository: ProductRepository) {}
+export class CreateProductHandler
+  implements ICommandHandler<CreateProductCommand>
+{
+  constructor(private readonly productService: ProductService) {}
 
   async execute(command: CreateProductCommand): Promise<Product> {
     const { name, price, description } = command;
@@ -15,6 +17,6 @@ export class CreateProductHandler implements ICommandHandler<CreateProductComman
       price,
       description,
     );
-    return this.productRepository.save(newProduct);
+    return this.productService.save(newProduct);
   }
 }
