@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Product } from '../../domain/entities/product.entity';
 import { ProductRepository } from '../../infras/repository/product.repository';
 import { CreateProductCommand } from '../commands/create-product.command';
 
-@Injectable()
-export class CreateProductHandler {
+@CommandHandler(CreateProductCommand)
+export class CreateProductHandler implements ICommandHandler<CreateProductCommand>{
   constructor(private readonly productRepository: ProductRepository) {}
 
   async execute(command: CreateProductCommand): Promise<Product> {

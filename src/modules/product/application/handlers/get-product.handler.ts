@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Product } from '../../domain/entities/product.entity';
 import { ProductRepository } from '../../infras/repository/product.repository';
 import { GetProductQuery } from '../queries/get-product.query';
 
-@Injectable()
-export class GetProductHandler {
+@QueryHandler(GetProductQuery)
+export class GetProductHandler implements IQueryHandler<GetProductQuery> {
   constructor(private readonly productRepository: ProductRepository) {}
 
   async execute(query: GetProductQuery): Promise<Product | null> {
